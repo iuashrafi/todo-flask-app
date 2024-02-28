@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<form method="POST" class="mb-4">
+    <label for="note">
+        <h4>Add a note/task</h4>
+    </label>
+    <textarea name="note" id="note" cols="30" rows="3" class="form-control"></textarea>
+    <br />
+    <button type="submit" class="btn btn-primary">Add Note</button>
+</form>
+<h4>Notes here</h4>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item d-flex justify-content-between">
+        <span>
+            {{note.data}}
+        </span>
+        <button type="button" class="btn-close" onClick="deleteNote({{note.id}})"></button>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
